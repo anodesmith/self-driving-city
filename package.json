@@ -1,0 +1,11 @@
+{
+  "name": "self-driving-city",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A plain-JavaScript virtual world where neural-network cars learn to drive on a road network you can build yourself.",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/run.js"
+  }
+}

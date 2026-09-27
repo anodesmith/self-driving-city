@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-driving city — neural networks that learn to drive</title>
+<link rel="stylesheet" href="src/ui/styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🚗</text></svg>">
+</head>
+<body>
+<div id="app">
+  <main id="stage">
+    <canvas id="view"></canvas>
+
+    <div id="topbar">
+      <div class="brand">
+        <strong>Self-driving city</strong>
+        <span class="sub">plain JavaScript · neuroevolution</span>
+      </div>
+      <div id="stats" class="stats"></div>
+      <div class="spacer"></div>
+      <div id="genbar" class="genbar" title="progress through the current generation">
+        <div id="genbar-fill"></div>
+        <span id="genbar-label"></span>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <div id="help" class="help" hidden>
+      <h2>What am I looking at?</h2>
+      <p>
+        A road network of <b>junctions</b> and <b>roads</b>. Every road is split into
+        directed <b>lanes</b>, and each car follows a lane to a destination, so routing is
+        solved for you — what the cars have to learn is <i>driving</i>.
+      </p>
+      <p>
+        Each car is a small neural network. It sees a fan of seven range-finder rays plus a
+        few lane signals, and it outputs <b>steering</b> and <b>throttle</b>. There is no
+        coding and no training data: the population is scored on how far it drives without
+        leaving the road, and the winners reproduce. Watch the blue line in the chart climb.
+      </p>
+      <p>
+        Press <b>E</b> to build your own roads — drag on the map, and the cars keep learning
+        on whatever you draw.
+      </p>
+      <button id="help-close">Start driving</button>
+    </div>
+  </main>
+
+  <aside id="panel">
+    <section class="card">
+      <h3>Simulation</h3>
+      <div class="row btns">
+        <button id="btn-pause" class="primary">Pause</button>
+        <button id="btn-step">Step</button>
+        <button id="btn-reset">New city</button>
+      </div>
+      <div id="sim-controls"></div>
+    </section>
+
+    <section class="card">
+      <h3>Learning</h3>
+      <div id="learn-controls"></div>
+      <div class="row btns">
+        <button id="btn-pretrain">Re-teach from expert</button>
+        <button id="btn-scenario">New scenario</button>
+      </div>
+      <div class="row btns">
+        <button id="btn-teach">Drive the expert</button>
+        <button id="btn-restore">Restore learning</button>
+      </div>
+      <p class="note" id="learn-note"></p>
+    </section>
+
+    <section class="card">
+      <h3>View</h3>
+      <div id="view-controls"></div>
+      <canvas id="minimap" class="minimap"></canvas>
+      <canvas id="chart" class="chart"></canvas>
+    </section>
+
+    <section class="card">
+      <h3>Roads <span class="hint" id="edit-hint">press E</span></h3>
+      <div class="row btns">
+        <button id="btn-edit">Build roads</button>
+        <button id="btn-clear">Clear</button>
+        <button id="btn-autoroad">Regenerate</button>
+      </div>
+      <p class="note" id="edit-note">Drag on the map to draw roads. Right-click or use erase to remove them.</p>
+    </section>
+  </aside>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
